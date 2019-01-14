@@ -1,0 +1,21 @@
+{
+  "name": "keyblader/bankapp",
+  "description": "project for presentation",
+  "type": "project",
+  "license": "free",
+  "authors": [
+    {
+      "name": "keyblader",
+      "email": "keyblader9000@gmail.com"
+    }
+  ],
+  "autoload" : {
+    "psr-4": {"Bank\\": "Bank"},
+    "classmap": ["Bank"]
+  },
+  "require": {
+    "katzgrau/klogger": "dev-master",
+    "sagrishin/lightweight-php-orm": "^1.3.3",
+    "klein/klein": "^2.1"
+  }
+}

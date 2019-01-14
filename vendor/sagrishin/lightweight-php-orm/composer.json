@@ -1,0 +1,17 @@
+{
+  "name": "sagrishin/lightweight-php-orm",
+  "license": "MIT",
+  "description": "Lightweight ORM for manipulating data in database",
+  "authors": [
+    {
+      "name": "Sergey Grishin",
+      "email": "forrirrof@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0"
+  },
+  "autoload": {
+    "psr-4": { "orm\\": "lib/orm" }
+  }
+}
