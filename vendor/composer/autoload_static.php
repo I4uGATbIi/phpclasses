@@ -6,19 +6,51 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'o' => 
+        'S' => 
         array (
-            'orm\\' => 4,
+            'Symfony\\Polyfill\\Util\\' => 22,
+            'Symfony\\Polyfill\\Php56\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Contracts\\' => 18,
+            'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\Console\\' => 26,
+            'SuperClosure\\' => 13,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
+            'PhpParser\\' => 10,
+            'PhpDocReader\\' => 13,
         ),
         'K' => 
         array (
             'Klein\\' => 6,
             'Katzgrau\\KLogger\\' => 17,
+        ),
+        'I' => 
+        array (
+            'Invoker\\' => 8,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\ORM\\' => 13,
+            'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\DBAL\\' => 14,
+            'Doctrine\\Common\\Inflector\\' => 26,
+            'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\Annotations\\' => 28,
+            'Doctrine\\Common\\' => 16,
+            'DI\\' => 3,
         ),
         'B' => 
         array (
@@ -27,13 +59,53 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     );
 
     public static $prefixDirsPsr4 = array (
-        'orm\\' => 
+        'Symfony\\Polyfill\\Util\\' => 
         array (
-            0 => __DIR__ . '/..' . '/sagrishin/lightweight-php-orm/lib/orm',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
+        ),
+        'Symfony\\Polyfill\\Php56\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/contracts',
+        ),
+        'Symfony\\Component\\Yaml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\Console\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'SuperClosure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PhpParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'PhpDocReader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/phpdoc-reader/src/PhpDocReader',
         ),
         'Klein\\' => 
         array (
@@ -43,17 +115,87 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
         array (
             0 => __DIR__ . '/..' . '/katzgrau/klogger/src',
         ),
+        'Invoker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/invoker/src',
+        ),
+        'Doctrine\\ORM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM',
+        ),
+        'Doctrine\\Instantiator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
+        ),
+        'Doctrine\\DBAL\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL',
+        ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\Annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+        ),
+        'DI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/php-di/src',
+        ),
         'Bank\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Bank',
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'D' => 
+        array (
+            'Doctrine\\Common\\Lexer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
+            ),
+            'Doctrine\\Common\\Collections\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/collections/lib',
+            ),
+        ),
+    );
+
+    public static $fallbackDirsPsr0 = array (
+        0 => __DIR__ . '/../..' . '/src',
+    );
+
     public static $classMap = array (
-        'Bank\\Account\\CommonAccount' => __DIR__ . '/../..' . '/Bank/Account/CommonAccount.php',
+        'Bank\\Account\\Account' => __DIR__ . '/../..' . '/Bank/Account/Account.php',
+        'Bank\\Account\\AccountInterface' => __DIR__ . '/../..' . '/Bank/Account/AccountInterface.php',
+        'Bank\\Account\\Controllers\\GetAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/GetAccount.php',
+        'Bank\\Account\\Controllers\\NewAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/NewAccount.php',
+        'Bank\\Account\\Controllers\\SaveAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/SaveAccount.php',
+        'Bank\\App' => __DIR__ . '/../..' . '/Bank/App.php',
         'Bank\\Customer\\BussinessCustomer' => __DIR__ . '/../..' . '/Bank/Customer/BussinessCustomer.php',
+        'Bank\\Customer\\Controller' => __DIR__ . '/../..' . '/Bank/Customer/Controller.php',
         'Bank\\Customer\\ICustomer' => __DIR__ . '/../..' . '/Bank/Customer/ICutomer.php',
         'Bank\\Customer\\PhysCustomer' => __DIR__ . '/../..' . '/Bank/Customer/PhysCustomer.php',
+        'Bank\\Services\\ControllerInterface' => __DIR__ . '/../..' . '/Bank/Services/ControllerInterface.php',
+        'Bank\\Services\\Database' => __DIR__ . '/../..' . '/Bank/Services/Database.php',
+        'Bank\\Services\\Database\\MigrateController' => __DIR__ . '/../..' . '/Bank/Services/Database/MigrateController.php',
+        'Bank\\Services\\Persistence\\CantSaveException' => __DIR__ . '/../..' . '/Bank/Services/Persistance/CantSaveException.php',
+        'Bank\\Services\\Persistence\\NotFoundException' => __DIR__ . '/../..' . '/Bank/Services/Persistance/NotFoundException.php',
+        'Bank\\Services\\Router' => __DIR__ . '/../..' . '/Bank/Services/Router.php',
+        'Bank\\Services\\SystemException' => __DIR__ . '/../..' . '/Bank/Services/SystemException.php',
         'Katzgrau\\KLogger\\Logger' => __DIR__ . '/..' . '/katzgrau/klogger/src/Logger.php',
     );
 
@@ -62,6 +204,8 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$classMap;
 
         }, null, ClassLoader::class);

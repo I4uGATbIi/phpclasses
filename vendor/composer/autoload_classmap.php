@@ -6,9 +6,22 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Bank\\Account\\CommonAccount' => $baseDir . '/Bank/Account/CommonAccount.php',
+    'Bank\\Account\\Account' => $baseDir . '/Bank/Account/Account.php',
+    'Bank\\Account\\AccountInterface' => $baseDir . '/Bank/Account/AccountInterface.php',
+    'Bank\\Account\\Controllers\\GetAccount' => $baseDir . '/Bank/Account/Controllers/GetAccount.php',
+    'Bank\\Account\\Controllers\\NewAccount' => $baseDir . '/Bank/Account/Controllers/NewAccount.php',
+    'Bank\\Account\\Controllers\\SaveAccount' => $baseDir . '/Bank/Account/Controllers/SaveAccount.php',
+    'Bank\\App' => $baseDir . '/Bank/App.php',
     'Bank\\Customer\\BussinessCustomer' => $baseDir . '/Bank/Customer/BussinessCustomer.php',
+    'Bank\\Customer\\Controller' => $baseDir . '/Bank/Customer/Controller.php',
     'Bank\\Customer\\ICustomer' => $baseDir . '/Bank/Customer/ICutomer.php',
     'Bank\\Customer\\PhysCustomer' => $baseDir . '/Bank/Customer/PhysCustomer.php',
+    'Bank\\Services\\ControllerInterface' => $baseDir . '/Bank/Services/ControllerInterface.php',
+    'Bank\\Services\\Database' => $baseDir . '/Bank/Services/Database.php',
+    'Bank\\Services\\Database\\MigrateController' => $baseDir . '/Bank/Services/Database/MigrateController.php',
+    'Bank\\Services\\Persistence\\CantSaveException' => $baseDir . '/Bank/Services/Persistance/CantSaveException.php',
+    'Bank\\Services\\Persistence\\NotFoundException' => $baseDir . '/Bank/Services/Persistance/NotFoundException.php',
+    'Bank\\Services\\Router' => $baseDir . '/Bank/Services/Router.php',
+    'Bank\\Services\\SystemException' => $baseDir . '/Bank/Services/SystemException.php',
     'Katzgrau\\KLogger\\Logger' => $vendorDir . '/katzgrau/klogger/src/Logger.php',
 );

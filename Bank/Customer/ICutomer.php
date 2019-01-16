@@ -4,6 +4,7 @@ namespace Bank\Customer;
 
 interface ICustomer
 {
-    function OpenAccountByType($accountType);
+    function OpenDepositAccount();
+    function OpenCreditAccount();
     function CloseAccount($accountId);
 }
