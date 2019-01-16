@@ -1,22 +1,21 @@
 <?php
 
-namespace Bank\Account\Controllers;
+namespace Bank\Customer\Controllers\Physical;
 
-use Bank\Account\Account;
+
+use Bank\Customer\PhysicalCustomer;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 
-/**
- * @Route("/account/{id}", name="account_get")
- */
 
-class GetAccount implements ControllerInterface
+
+class GetPhysicalCustomer implements ControllerInterface
 {
     /**
-     * @var Account
+     * @var PhysicalCustomer
      */
-    private $account;
+    private $customer;
 
     /**
      * @var \Katzgrau\KLogger\Logger
@@ -25,15 +24,15 @@ class GetAccount implements ControllerInterface
 
     /**
      * View constructor.
-     * @param Account $product
+     * @param PhysicalCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        Account $account,
+        PhysicalCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
     )
     {
-        $this->account = $account;
+        $this->customer = $customer;
         $this->logger = $logger;
     }
 
@@ -46,10 +45,15 @@ class GetAccount implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $account = Database::GetEntityManager()->getRepository(Account::class)
+            $customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
                 ->find($request->id);
 
-            return print_r($account, true);
+            if(!$customer)
+            {
+                throw new NotFoundException();
+            }
+
+            return print_r($customer, true);
 
         } catch (NotFoundException $e) {
             return "Sorry, the account not found";

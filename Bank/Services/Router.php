@@ -17,20 +17,98 @@ class Router
 
         [
             'method' => "GET",
-            'path' => "/account/[i:id]",
-            'className' => \Bank\Account\Controllers\GetAccount::class
+            'path' => "/account/deposit/[i:id]",
+            'className' => \Bank\Account\Controllers\Deposit\GetDepositAccount::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/account/new",
-            'className' => \Bank\Account\Controllers\NewAccount::class
+            'path' => "/account/deposit/new",
+            'className' => \Bank\Account\Controllers\Deposit\NewDepositAccount::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/account/deposit/edit/[i:id]",
+            'className' => \Bank\Account\Controllers\Deposit\EditDepositAccount::class
         ],
 
         [
             'method' => "POST",
-            'path' => "/account/save",
-            'className' => \Bank\Account\Controllers\SaveAccount::class
+            'path' => "/account/deposit/delete",
+            'className' => \Bank\Account\Controllers\Deposit\DeleteDepositAccount::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/account/deposit/save",
+            'className' => \Bank\Account\Controllers\Deposit\SaveDepositAccount::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/business/customer/[i:id]",
+            'className' => \Bank\Customer\Controllers\Business\GetBusinessCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/business/customer/new",
+            'className' => \Bank\Customer\Controllers\Business\NewBusinessCustomer::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/business/customer/save",
+            'className' => \Bank\Customer\Controllers\Business\SaveBusinessCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/business/customer/edit/[i:id]",
+            'className' => \Bank\Customer\Controllers\Business\EditBusinessCustomer::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/business/customer/delete",
+            'className' => \Bank\Customer\Controllers\Business\DeleteBusinessCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/physical/customer/[i:id]",
+            'className' => \Bank\Customer\Controllers\Physical\GetPhysicalCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/physical/customer/new",
+            'className' => \Bank\Customer\Controllers\Physical\NewPhysicalCustomer::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/physical/customer/save",
+            'className' => \Bank\Customer\Controllers\Physical\SavePhysicalCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/physical/customer/edit/[i:id]",
+            'className' => \Bank\Customer\Controllers\Physical\EditPhysicalCustomer::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/physical/customer/delete",
+            'className' => \Bank\Customer\Controllers\Physical\DeletePhysicalCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/account/deposit/",
+            'className' => \Bank\Account\Controllers\GetDepositAccounts::class
         ],
     ];
 

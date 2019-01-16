@@ -1,19 +1,19 @@
 <?php
 
-namespace Bank\Account\Controllers;
+namespace Bank\Customer\Controllers\Physical;
 
-use Bank\Account\Account;
+use Bank\Customer\PhysicalCustomer;
 use Bank\Services\Database;
 use Bank\Services\Persistence\CantSaveException;
 use Bank\Services\ControllerInterface;
 
-class SaveAccount implements ControllerInterface
+class SavePhysicalCustomer implements ControllerInterface
 {
 
     /**
-     * @var Account
+     * @var PhysicalCustomer
      */
-    private $account;
+    private $customer;
 
     /**
      * @var \Katzgrau\KLogger\Logger
@@ -22,15 +22,15 @@ class SaveAccount implements ControllerInterface
 
     /**
      * View constructor.
-     * @param Account $product
+     * @param PhysicalCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        Account $account,
+        PhysicalCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
     )
     {
-        $this->account = $account;
+        $this->customer = $customer;
         $this->logger = $logger;
     }
 
@@ -43,18 +43,25 @@ class SaveAccount implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $this->account->setAccType($request->paramsPost()->accType);
-            $this->account->setBalance($request->paramsPost()->price);
-            $this->account->setAccountId($request->paramsPost()->accID);
-            Database::GetEntityManager()->persist($this->account);
+            if($request->paramsPost()->id != null)
+            {
+                $this->customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
+                    ->find($request->id);
+            }
+            $this->customer->setName($request->paramsPost()->name);
+            $this->customer->setPdvCode($request->paramsPost()->pdvCode);
+            $this->customer->setTaxCode($request->paramsPost()->taxCode);
+            if($request->paramsPost()->id === null) {
+                Database::GetEntityManager()->persist($this->customer);
+            }
             Database::GetEntityManager()->flush();
-            return $response->redirect("/account/" . $this->account->getId());
+            return $response->redirect("/customer/" . $this->customer->getId());
         } catch (CantSaveException $e) {
 
             $this->logger->debug(
                 $e->getMessage(), $e->getTrace());
 
-            return "Sorry, the product can't be saved";
+            return "Sorry, the customer can't be saved";
         } catch (\Bank\Services\SystemException $e) {
 
             $this->logger->debug(

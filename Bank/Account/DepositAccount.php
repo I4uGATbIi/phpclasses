@@ -3,11 +3,11 @@
 namespace Bank\Account;
 
 /**
- * Class Account
- * @package Bank\Account
- * @Entity @Table(name="Accounts")
+ * Class DepositAccount
+ * @package Bank\DepositAccount
+ * @Entity @Table(name="DepositAccounts")
  */
-class Account implements AccountInterface
+class DepositAccount implements AccountInterface
 {
 
 
@@ -29,10 +29,10 @@ class Account implements AccountInterface
     protected $balance;
 
     /**
-     * @var string
-     * @Column (type="string")
+     * @var double
+     * @Column(type="float")
      */
-    protected $accType;
+    protected $monthPercent;
 
     /**
      * @return string
@@ -66,6 +66,12 @@ class Account implements AccountInterface
         $this->balance = $balance;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
     /**
      * @return int
      */
@@ -75,25 +81,24 @@ class Account implements AccountInterface
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getAccType()
+    public function getMonthPercent()
     {
-        return $this->accType;
+        return $this->monthPercent;
     }
 
     /**
-     * @param string $accType
+     * @param float $monthPercent
      */
-    public function setAccType($accType)
+    public function setMonthPercent($monthPercent)
     {
-        $this->accType = $accType;
+        $this->monthPercent = $monthPercent;
     }
-
 
 
     function CheckForClosing()
     {
-        // TODO: Implement CheckForClosing() method.
+        return $this->balance>0;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Bank\Account\Controllers;
+namespace Bank\Account\Controllers\Deposit;
 
-use Bank\Account\Account;
+use Bank\Account\DepositAccount;
 use Bank\Services\ControllerInterface;
 
-class NewAccount implements ControllerInterface
+class NewDepositAccount implements ControllerInterface
 {
 
     /**
@@ -22,13 +22,13 @@ class NewAccount implements ControllerInterface
     
     <label for="accID">AccID</label>
     <input name="accID">
-    <label for="price">Price</label>
+    <label for="price">Start Limit</label>
     <input name="price">
     <br>
-    <label for="accType">Account Type</label>
-    <select name="accType">
-	<option>Deposit</option>
-	<option>Credit</option>
+	<label for="percent">Choose Percent</label>
+    <select name="percent">
+	<option>15</option>
+	<option>20</option>
 	</select>
 	<br>
 	<button type="submit">Open</button>

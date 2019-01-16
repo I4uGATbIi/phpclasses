@@ -14,7 +14,7 @@ class Database
     private static $connectionParams = array(
     'dbname' => 'bank',
     'user' => 'root',
-    'password' => 'puding',
+    'password' => 'root',
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
     );

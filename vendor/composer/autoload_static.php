@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
+class ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -14,6 +14,10 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -59,6 +63,10 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
@@ -161,6 +169,13 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 
@@ -179,22 +194,31 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     );
 
     public static $classMap = array (
-        'Bank\\Account\\Account' => __DIR__ . '/../..' . '/Bank/Account/Account.php',
         'Bank\\Account\\AccountInterface' => __DIR__ . '/../..' . '/Bank/Account/AccountInterface.php',
+        'Bank\\Account\\Controllers\\DeleteAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/DeleteAccount.php',
+        'Bank\\Account\\Controllers\\EditAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/EditAccount.php',
         'Bank\\Account\\Controllers\\GetAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/GetAccount.php',
         'Bank\\Account\\Controllers\\NewAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/NewAccount.php',
         'Bank\\Account\\Controllers\\SaveAccount' => __DIR__ . '/../..' . '/Bank/Account/Controllers/SaveAccount.php',
+        'Bank\\Account\\CreditAccount' => __DIR__ . '/../..' . '/Bank/Account/CreditAccount.php',
+        'Bank\\Account\\DepositAccount' => __DIR__ . '/../..' . '/Bank/Account/DepositAccount.php',
         'Bank\\App' => __DIR__ . '/../..' . '/Bank/App.php',
         'Bank\\Customer\\BussinessCustomer' => __DIR__ . '/../..' . '/Bank/Customer/BussinessCustomer.php',
-        'Bank\\Customer\\Controller' => __DIR__ . '/../..' . '/Bank/Customer/Controller.php',
+        'Bank\\Customer\\Controllers\\DeleteCustomer' => __DIR__ . '/../..' . '/Bank/Customer/Controllers/DeleteCustomer.php',
+        'Bank\\Customer\\Controllers\\EditCustomer' => __DIR__ . '/../..' . '/Bank/Customer/Controllers/EditCustomer.php',
+        'Bank\\Customer\\Controllers\\GetCustomer' => __DIR__ . '/../..' . '/Bank/Customer/Controllers/GetCustomer.php',
+        'Bank\\Customer\\Controllers\\NewCustomer' => __DIR__ . '/../..' . '/Bank/Customer/Controllers/NewCustomer.php',
+        'Bank\\Customer\\Controllers\\SaveCustomer' => __DIR__ . '/../..' . '/Bank/Customer/Controllers/SaveCustomer.php',
         'Bank\\Customer\\ICustomer' => __DIR__ . '/../..' . '/Bank/Customer/ICutomer.php',
         'Bank\\Customer\\PhysCustomer' => __DIR__ . '/../..' . '/Bank/Customer/PhysCustomer.php',
         'Bank\\Services\\ControllerInterface' => __DIR__ . '/../..' . '/Bank/Services/ControllerInterface.php',
         'Bank\\Services\\Database' => __DIR__ . '/../..' . '/Bank/Services/Database.php',
         'Bank\\Services\\Database\\MigrateController' => __DIR__ . '/../..' . '/Bank/Services/Database/MigrateController.php',
+        'Bank\\Services\\DiContainer' => __DIR__ . '/../..' . '/Bank/Services/DiContainer.php',
         'Bank\\Services\\Persistence\\CantSaveException' => __DIR__ . '/../..' . '/Bank/Services/Persistance/CantSaveException.php',
         'Bank\\Services\\Persistence\\NotFoundException' => __DIR__ . '/../..' . '/Bank/Services/Persistance/NotFoundException.php',
         'Bank\\Services\\Router' => __DIR__ . '/../..' . '/Bank/Services/Router.php',
+        'Bank\\Services\\Singleton' => __DIR__ . '/../..' . '/Bank/Services/Singleton.php',
         'Bank\\Services\\SystemException' => __DIR__ . '/../..' . '/Bank/Services/SystemException.php',
         'Katzgrau\\KLogger\\Logger' => __DIR__ . '/..' . '/katzgrau/klogger/src/Logger.php',
     );
@@ -202,11 +226,11 @@ class ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInitff8f55a12a1eb0d87be499c42edb0032::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit199052976ca11c7dc5b00d75ddcfa0e6::$classMap;
 
         }, null, ClassLoader::class);
     }

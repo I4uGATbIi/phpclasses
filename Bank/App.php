@@ -2,11 +2,13 @@
 
 namespace Bank;
 use Bank\Services\Database;
-
 class App
 {
     public static function run()
     {
+
+
+
         try {
             $em = Database::GetEntityManager();
             $db = Database::GetConnection();
