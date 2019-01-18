@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<form method="post" action="/account/deposit/save">
+    <input type="hidden" name="customerId" value="{{customerId}}">
+    <label for="accID">AccID</label>
+    <input name="accID">
+    <label for="price">Start Deposit</label>
+    <input name="price">
+    <br>
+    <label for="percent">Choose Percent</label>
+    <select name="percent">
+        <option>15</option>
+        <option>20</option>
+    </select>
+    <br>
+    <button type="submit" formaction="/account/deposit/save">Open</button>
+
+</form>
+
+</html>

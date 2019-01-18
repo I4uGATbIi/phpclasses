@@ -18,7 +18,7 @@ class NewBusinessCustomer implements ControllerInterface
     {
         try {
             $html = <<<HTML
-<form method="post" action="/customer/save">
+<form method="post" action="/customer/business/save">
     
     <label for="name">Name</label>
     <input name="name">

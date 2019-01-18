@@ -22,7 +22,7 @@ class SaveDepositAccount implements ControllerInterface
 
     /**
      * View constructor.
-     * @param DepositAccount $product
+     * @param DepositAccount $account
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
@@ -51,11 +51,18 @@ class SaveDepositAccount implements ControllerInterface
             $this->account->setMonthPercent($request->paramsPost()->percent);
             $this->account->setBalance($request->paramsPost()->price);
             $this->account->setAccountId($request->paramsPost()->accID);
+
+            if($request->paramsPost()->customerId != null) {
+                $this->account->setCustomerId($request->paramsPost()->customerId);
+
+            }
             if($request->paramsPost()->id === null) {
                 Database::GetEntityManager()->persist($this->account);
+
             }
             Database::GetEntityManager()->flush();
-            return $response->redirect("/account/" . $this->account->getId());
+
+            return $response->redirect("/account/deposit/" . $this->account->getId());
         } catch (CantSaveException $e) {
 
             $this->logger->debug(

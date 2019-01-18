@@ -4,9 +4,35 @@ namespace Bank\Account\Controllers\Deposit;
 
 use Bank\Account\DepositAccount;
 use Bank\Services\ControllerInterface;
+use Bank\Services\DiContainer;
+use Twig\Environment;
 
 class NewDepositAccount implements ControllerInterface
 {
+
+    /**
+     * @var DepositAccount
+     */
+    private $account;
+
+    /**
+     * @var \Katzgrau\KLogger\Logger
+     */
+    private $logger;
+
+    /**
+     * View constructor.
+     * @param DepositAccount $account
+     * @param \Katzgrau\KLogger\Logger $logger
+     */
+    public function __construct(
+        DepositAccount $account,
+        \Katzgrau\KLogger\Logger $logger
+    )
+    {
+        $this->account = $account;
+        $this->logger = $logger;
+    }
 
     /**
      * @param $request
@@ -17,26 +43,11 @@ class NewDepositAccount implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $html = <<<HTML
-<form method="post" action="/account/save">
-    
-    <label for="accID">AccID</label>
-    <input name="accID">
-    <label for="price">Start Limit</label>
-    <input name="price">
-    <br>
-	<label for="percent">Choose Percent</label>
-    <select name="percent">
-	<option>15</option>
-	<option>20</option>
-	</select>
-	<br>
-	<button type="submit">Open</button>
+            $customerId = $request->paramsGet()->customerId;
 
-</form>
-
-HTML;
-            return $html;
+            $twig = DiContainer::getInstance()->get(Environment::class);
+            $template = $twig->load('NewDeposit.html');
+            return $template->render([ 'customerId'=>$customerId ]);
 
         } catch (\Bank\Services\SystemException $e) {
 

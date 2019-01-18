@@ -2,7 +2,7 @@
 
 namespace Bank\Customer;
 
-interface ICustomer
+interface CustomerInterface
 {
     function OpenDepositAccount();
     function OpenCreditAccount();

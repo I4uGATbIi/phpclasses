@@ -45,70 +45,132 @@ class Router
             'className' => \Bank\Account\Controllers\Deposit\SaveDepositAccount::class
         ],
 
+
+
         [
             'method' => "GET",
-            'path' => "/business/customer/[i:id]",
+            'path' => "/account/credit/[i:id]",
+            'className' => \Bank\Account\Controllers\Credit\GetCreditAccount::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/account/credit/new",
+            'className' => \Bank\Account\Controllers\Credit\NewCreditAccount::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/account/credit/edit/[i:id]",
+            'className' => \Bank\Account\Controllers\Credit\EditCreditAccount::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/account/credit/delete",
+            'className' => \Bank\Account\Controllers\Credit\DeleteCreditAccount::class
+        ],
+
+        [
+            'method' => "POST",
+            'path' => "/account/credit/save",
+            'className' => \Bank\Account\Controllers\Credit\SaveCreditAccount::class
+        ],
+
+
+
+
+        [
+            'method' => "GET",
+            'path' => "/customer/business/[i:id]",
             'className' => \Bank\Customer\Controllers\Business\GetBusinessCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/business/customer/new",
+            'path' => "/customer/business/new",
             'className' => \Bank\Customer\Controllers\Business\NewBusinessCustomer::class
         ],
 
         [
             'method' => "POST",
-            'path' => "/business/customer/save",
+            'path' => "/customer/business/save",
             'className' => \Bank\Customer\Controllers\Business\SaveBusinessCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/business/customer/edit/[i:id]",
+            'path' => "/customer/business/edit/[i:id]",
             'className' => \Bank\Customer\Controllers\Business\EditBusinessCustomer::class
         ],
 
         [
             'method' => "POST",
-            'path' => "/business/customer/delete",
+            'path' => "/customer/business/delete",
             'className' => \Bank\Customer\Controllers\Business\DeleteBusinessCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/physical/customer/[i:id]",
+            'path' => "/customer/physical/[i:id]",
             'className' => \Bank\Customer\Controllers\Physical\GetPhysicalCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/physical/customer/new",
+            'path' => "/customer/physical/new",
             'className' => \Bank\Customer\Controllers\Physical\NewPhysicalCustomer::class
         ],
 
         [
             'method' => "POST",
-            'path' => "/physical/customer/save",
+            'path' => "/customer/physical/save",
             'className' => \Bank\Customer\Controllers\Physical\SavePhysicalCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/physical/customer/edit/[i:id]",
+            'path' => "/customer/physical/edit/[i:id]",
             'className' => \Bank\Customer\Controllers\Physical\EditPhysicalCustomer::class
         ],
 
         [
             'method' => "POST",
-            'path' => "/physical/customer/delete",
+            'path' => "/customer/physical/delete",
             'className' => \Bank\Customer\Controllers\Physical\DeletePhysicalCustomer::class
         ],
 
         [
             'method' => "GET",
-            'path' => "/account/deposit/",
+            'path' => "/accounts/deposit/",
             'className' => \Bank\Account\Controllers\GetDepositAccounts::class
+        ],
+        [
+            'method' => "GET",
+            'path' => "/accounts/credit/",
+            'className' => \Bank\Account\Controllers\GetCreditAccounts::class
+        ],
+        [
+            'method' => "GET",
+            'path' => "/customers/physical",
+            'className' => \Bank\Customer\Controllers\GetPhysicalCustomers::class
+        ],
+        [
+            'method' => "GET",
+            'path' => "/customers/business",
+            'className' => \Bank\Customer\Controllers\GetBusinessCustomer::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/",
+            'className' => \Bank\Controllers\MainPage::class
+        ],
+
+        [
+            'method' => "GET",
+            'path' => "/notfound",
+            'className' => \Bank\Controllers\NotFound::class
         ],
     ];
 

@@ -4,6 +4,8 @@ namespace Bank\Customer\Controllers\Physical;
 
 
 
+use Bank\Account\CreditAccount;
+use Bank\Account\DepositAccount;
 use Bank\Customer\PhysicalCustomer;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
@@ -46,17 +48,37 @@ class DeletePhysicalCustomer implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
                 ->find($request->id);
+            $this->customer->setAccounts(Database::GetEntityManager()->getRepository(CreditAccount::class)
+                ->findBy(array('customerId' => $this->customer->getId())));
+            $this->customer->setAccounts(Database::GetEntityManager()->getRepository(DepositAccount::class)
+                ->findBy(array('customerId' => $this->customer->getId())));
 
-
+            if(!$this->customer)
+            {
+                throw new NotFoundException();
+            }
+            if($this->customer->getAccounts()) {
+                foreach ($this->customer->getAccounts() as $account) {
+                    Database::GetEntityManager()->remove($account);
+                }
+            }
             Database::GetEntityManager()->remove($this->customer);
             Database::GetEntityManager()->flush();
 
-            return "Customer deleted!";
+            $html = <<<HTML
+<form>
+    <label>Customer Deleted</label>
+	<button type="submit" formaction="/">Home</button>
+</form>
+
+HTML;
+
+            return $html;
 
         } catch (NotFoundException $e) {
-            return "Sorry, the account not found";
+            return $response->redirect("/notfound");
         }
     }
 }

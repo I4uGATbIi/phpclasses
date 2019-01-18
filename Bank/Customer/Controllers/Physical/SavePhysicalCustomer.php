@@ -48,14 +48,16 @@ class SavePhysicalCustomer implements ControllerInterface
                 $this->customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
                     ->find($request->id);
             }
-            $this->customer->setName($request->paramsPost()->name);
-            $this->customer->setPdvCode($request->paramsPost()->pdvCode);
-            $this->customer->setTaxCode($request->paramsPost()->taxCode);
+            $this->customer->setFirstName($request->paramsPost()->firstName);
+            $this->customer->setLastName($request->paramsPost()->lastName);
+            $this->customer->setAge($request->paramsPost()->age);
+            $this->customer->setIPN($request->paramsPost()->IPN);
+            $this->customer->setPassportCode($request->paramsPost()->passportCode);
             if($request->paramsPost()->id === null) {
                 Database::GetEntityManager()->persist($this->customer);
             }
             Database::GetEntityManager()->flush();
-            return $response->redirect("/customer/" . $this->customer->getId());
+            return $response->redirect("/customer/physical/" . $this->customer->getId());
         } catch (CantSaveException $e) {
 
             $this->logger->debug(

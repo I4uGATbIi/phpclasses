@@ -7,10 +7,8 @@ use Bank\Account\AccountInterface;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
-
-/**
- * @Route("/account/{id}", name="account_get")
- */
+use Bank\Services\DiContainer;
+use Twig\Environment;
 
 class GetDepositAccount implements ControllerInterface
 {
@@ -47,17 +45,25 @@ class GetDepositAccount implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $account = Database::GetEntityManager()->getRepository(DepositAccount::class)
+            $this->account = Database::GetEntityManager()->getRepository(DepositAccount::class)
                 ->find($request->id);
-            if(!$account)
+            if(!$this->account)
             {
                 throw new NotFoundException();
             }
+            $arr=get_class_methods(DepositAccount::class);
+            foreach ($arr as $method_name) {
+                if(strpos($method_name,'get')===0) {
+                    $methods[] = $method_name;
+                }
+            }
 
-            return print_r($account, true);
+            $twig = DiContainer::getInstance()->get(Environment::class);
+            $template = $twig->load('CustomerOrAccount.html');
+            return $template->render([ 'object'=>$this->account , 'methods'=>$methods,'dataType'=>'Deposit Account' , 'link'=>'account/deposit/','mainData'=>$this->account->getData()]);
 
         } catch (NotFoundException $e) {
-            return "Sorry, the account not found";
+            return $response->redirect("/notfound");
         }
     }
 }

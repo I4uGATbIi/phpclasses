@@ -2,6 +2,8 @@
 
 namespace Bank;
 use Bank\Services\Database;
+use Bank\Services\DiContainer;
+use Twig\Loader\FilesystemLoader;
 class App
 {
     public static function run()
@@ -12,6 +14,7 @@ class App
         try {
             $em = Database::GetEntityManager();
             $db = Database::GetConnection();
+            DiContainer::getInstance()->get(FilesystemLoader::class);
 
             $router = new Services\Router();
             $router->dispatch();

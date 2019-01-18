@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{dataType}}</title>
+</head>
+<form>
+<h1>{{mainData}}</h1>
+<ul>
+
+    {% for method in methods %}
+    <li>{{attribute(object,method)}}</li>
+    {% endfor %}
+    <li><a href="http://bank-project.loc/{{link}}edit/{{ object.getId() }}">Edit</a></li>
+
+</ul>
+<br>
+<a href="http://bank-project.loc/">Home</a>
+{% if 'Customers' in dataType %}
+    <ul>
+    {% for account in accounts %}
+    <li><a href="http://bank-project.loc/account/{{account.getType()}}/{{account.getId()}}">{{account.getData()}}</a></li>
+    {% endfor %}
+    </ul>
+        <input type="hidden" name="customerId" value="{{object.getId()}}">
+        <button type="submit" formaction="/account/deposit/new">Open Deposit Account</button>
+        <button type="submit" formaction="/account/credit/new">Open Credit Account</button>
+{% endif %}
+
+    </form>
+</body>
+</html>

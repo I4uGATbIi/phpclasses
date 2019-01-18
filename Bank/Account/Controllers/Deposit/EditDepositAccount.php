@@ -46,10 +46,10 @@ class EditDepositAccount implements ControllerInterface
 
         try {
 
-            $account = Database::GetEntityManager()->getRepository(DepositAccount::class)
+            $this->account = Database::GetEntityManager()->getRepository(DepositAccount::class)
                 ->find($request->id);
 
-            if(!$account)
+            if(!$this->account)
             {
                 throw new NotFoundException();
             }
@@ -58,15 +58,17 @@ class EditDepositAccount implements ControllerInterface
 
 
             $html = <<<HTML
-<form method="post" action="/account/save">
-    <input type="hidden" name="id" value="{$account->getId()}">
-    <input type="hidden" name="accID" value="{$account->getAccountId()}">
-    <input type="hidden" name="percent" value="{$account->getMonthPercent()}">
+<form method="post" action="/account/deposit/save">
+    <input type="hidden" name="id" value="{$this->account->getId()}">
+    <input type="hidden" name="customerId" value="{$this->account->getCustomerId()}">
+    <input type="hidden" name="accID" value="{$this->account->getAccountId()}">
+    <input type="hidden" name="percent" value="{$this->account->getMonthPercent()}">
+    <input type="hidden" name="customerId" value="{$this->account->getMonthPercent()}">
     <label for="price">Set Balance</label>
-    <input name="price" value="{$account->getBalance()}">
+    <input name="price" value="{$this->account->getBalance()}">
     <br>
 	<button type="submit">Save</button>
-	<button type="submit" formaction="/account/delete">Close Account</button>
+	<button type="submit" formaction="/account/deposit/delete">Close Account</button>
 
 </form>
 
@@ -75,7 +77,7 @@ HTML;
 
         }
         catch (NotFoundException $e) {
-            return "Sorry, the account not found";
+            return $response->redirect("/notfound");
         }
         catch (\Bank\Services\SystemException $e) {
 

@@ -41,10 +41,10 @@ class NewPhysicalCustomer implements ControllerInterface
     {
         try {
             $html = <<<HTML
-<form method="post" action="/customer/save">
+<form method="post" action="/customer/physical/save">
     
-    <label for="firstName">Firts Name</label>
-    <input name="firtsName">
+    <label for="firstName">First Name</label>
+    <input name="firstName">
     <br>
     <label for="lastName">Last Name</label>
     <input name="lastName">
@@ -56,7 +56,7 @@ class NewPhysicalCustomer implements ControllerInterface
     <input name="IPN">
     <br>
     <label for="passportCode">Passport Code</label>
-    <input name="passpoertCode">
+    <input name="passportCode">
     <br>
 	<button type="submit">Save</button>
 

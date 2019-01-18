@@ -14,7 +14,7 @@ class Database
     private static $connectionParams = array(
     'dbname' => 'bank',
     'user' => 'root',
-    'password' => 'root',
+    'password' => 'puding',
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
     );
@@ -36,15 +36,14 @@ class Database
 
     public static function GetEntityManager()
     {
-        if (null === static::$entityManager)
-        {
-            $paths = array("/Bank");
+        if(null===static::$entityManager) {
+            $paths = array(DOCKROOT . "/Bank");
             $isDevMode = true;
 
             $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
             static::$entityManager = EntityManager::create(static::$connectionParams, $config);
-
         }
+
 
         return static::$entityManager;
 

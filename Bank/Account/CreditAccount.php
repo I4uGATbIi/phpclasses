@@ -17,6 +17,11 @@ class CreditAccount implements AccountInterface
      */
     protected $id;
     /**
+     * @var integer
+     * @Column(type="integer",nullable=true)
+     */
+    protected $customerId = null;
+    /**
      * @var string
      * @Column(type="string")
      */
@@ -81,8 +86,64 @@ class CreditAccount implements AccountInterface
         return $this->id;
     }
 
+    /**
+     * @return int
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param int $customerId
+     */
+    public function setCustomerId($customerId)
+    {
+        $this->customerId = $customerId;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCreditLimit()
+    {
+        return $this->creditLimit;
+    }
+
+    /**
+     * @param float $creditLimit
+     */
+    public function setCreditLimit($creditLimit)
+    {
+        $this->creditLimit = $creditLimit;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMonthPercent()
+    {
+        return $this->monthPercent;
+    }
+
+    /**
+     * @param float $monthPercent
+     */
+    public function setMonthPercent($monthPercent)
+    {
+        $this->monthPercent = $monthPercent;
+    }
 
 
+    public function getData()
+    {
+        return $this->getAccountId();
+    }
+
+    public function getType()
+    {
+        return 'credit';
+    }
 
 
 

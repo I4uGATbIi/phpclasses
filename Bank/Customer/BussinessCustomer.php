@@ -7,7 +7,7 @@ namespace Bank\Customer;
  * @package Bank\Customer
  * @Entity @Table(name="businessCustomers")
  */
-class BussinessCustomer implements ICustomer
+class BussinessCustomer implements CustomerInterface
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ class BussinessCustomer implements ICustomer
     private $pdvCode;
 
     /**
-     * @var array CommonAccount
+     * @var array
      */
     private $accounts;
 
@@ -97,6 +97,25 @@ class BussinessCustomer implements ICustomer
         $this->name = $name;
     }
 
+    public function getData()
+    {
+        return $this->getName();
+    }
+
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
+
+    /**
+     * @param array $accounts
+     */
+    public function setAccounts($accounts)
+    {
+        foreach ($accounts as $account) {
+            $this->accounts[] = $account;
+        }
+    }
 
     function OpenDepositAccount()
     {

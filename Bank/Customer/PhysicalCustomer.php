@@ -7,7 +7,7 @@ namespace Bank\Customer;
  * @package Bank\Customer
  * @Entity @Table(name="physicalCustomers")
  */
-class PhysicalCustomer implements ICustomer
+class PhysicalCustomer implements CustomerInterface
 {
     /**
      * @var integer
@@ -39,6 +39,12 @@ class PhysicalCustomer implements ICustomer
      * @Column(type="string")
      */
     private $passportCode;
+
+    /**
+     * @var array
+     */
+    private $accounts;
+
 
     /**
      * @return mixed
@@ -127,6 +133,31 @@ class PhysicalCustomer implements ICustomer
     {
         return $this->id;
     }
+
+
+    public function getData()
+    {
+        return $this->getLastName().' '.$this->getFirstName();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
+
+    /**
+     * @param array $accounts
+     */
+    public function setAccounts($accounts)
+    {
+        foreach ($accounts as $account) {
+            $this->accounts[] = $account;
+        }
+    }
+
 
 
 

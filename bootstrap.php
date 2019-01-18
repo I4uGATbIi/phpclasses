@@ -13,7 +13,7 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/Bank"), $
 $conn = array(
     'dbname' => 'bank',
     'user' => 'root',
-    'password' => 'root',
+    'password' => 'puding',
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
 );

@@ -48,10 +48,10 @@ class EditBusinessCustomer implements ControllerInterface
 
         try {
 
-            $customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
                 ->find($request->id);
 
-            if(!$customer)
+            if(!$this->customer)
             {
                 throw new NotFoundException();
             }
@@ -61,18 +61,18 @@ class EditBusinessCustomer implements ControllerInterface
 
             $html = <<<HTML
 <form method="post" action="/customer/save">
-    <input type="hidden" name="id" value="{$customer->getId()}">
+    <input type="hidden" name="id" value="{$this->customer->getId()}">
     <label for="name">Name</label>
-    <input name="name" value="{$customer->getName()}">
+    <input name="name" value="{$this->customer->getName()}">
     <br>
     <label for="taxCode">Tax Code</label>
-    <input name="taxCode" value="{$customer->getTaxCode()}">
+    <input name="taxCode" value="{$this->customer->getTaxCode()}">
     <br>
     <label for="pdvCode">PDV Code</label>
-    <input name="pdvCode" value="{$customer->getPdvCode()}">
+    <input name="pdvCode" value="{$this->customer->getPdvCode()}">
     <br>
 	<button type="submit" >Save</button>
-	<button type="submit" formaction="/customer/delete">Delete</button>
+	<button type="submit" formaction="/customer/business/delete">Delete</button>
 
 </form>
 
@@ -81,7 +81,7 @@ HTML;
 
         }
         catch (NotFoundException $e) {
-            return "Sorry, the account not found";
+            return $response->redirect("/notfound");
         }
         catch (\Bank\Services\SystemException $e) {
 

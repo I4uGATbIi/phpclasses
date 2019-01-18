@@ -16,7 +16,9 @@ class MigrateController implements ControllerInterface
             $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
             $classes = array(
                 $em->getClassMetadata('\Bank\Customer\BussinessCustomer'),
-                $em->getClassMetadata('\Bank\Account\DepositAccount')
+                $em->getClassMetadata('\Bank\Customer\PhysicalCustomer'),
+                $em->getClassMetadata('\Bank\Account\DepositAccount'),
+                $em->getClassMetadata('\Bank\Account\CreditAccount'),
             );
             $tool->createSchema($classes);
             return 'Schema created succesfully!';

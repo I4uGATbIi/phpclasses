@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{dataType}}</title>
+</head>
+<body>
+<h1>{{dataType}}</h1>
+<ul>
+    {% for dataUnit in data %}
+    <li><a href="http://bank-project.loc/{{link}}{{ dataUnit.getId() }}">{{dataUnit.getData()}}</a></li>
+
+    {% endfor %}
+</ul>
+
+<a href="http://bank-project.loc/{{link}}new">Create new</a>
+<a href="http://bank-project.loc">Home</a>
+</body>
+</html>

@@ -56,7 +56,7 @@ class SaveBusinessCustomer implements ControllerInterface
                 Database::GetEntityManager()->persist($this->customer);
             }
             Database::GetEntityManager()->flush();
-            return $response->redirect("/customer/" . $this->customer->getId());
+            return $response->redirect("/customer/business/" . $this->customer->getId());
         } catch (CantSaveException $e) {
 
             $this->logger->debug(

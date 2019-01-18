@@ -6,6 +6,8 @@ use Bank\Account\DepositAccount;
 use Bank\Services\Database;
 use Bank\Services\Persistence\CantSaveException;
 use Bank\Services\ControllerInterface;
+use Doctrine\DBAL\Exception;
+use Doctrine\ORM\EntityNotFoundException;
 
 class DeleteDepositAccount implements ControllerInterface
 {
@@ -44,14 +46,25 @@ class DeleteDepositAccount implements ControllerInterface
     {
         try {
 
-                $this->account = Database::GetEntityManager()->getRepository(DepositAccount::class)
-                    ->find($request->id);
-                if ($this->account->CheckForClosing()) {
-                    Database::GetEntityManager()->remove($this->account);
-                    Database::GetEntityManager()->flush();
-                    return "Account closed!";//$response->redirect("/account/" . $this->account->getId());
-                }
-            return "You cannot close account with negative balance";
+            $this->account = Database::GetEntityManager()->getRepository(DepositAccount::class)
+                ->find($request->id);
+            if ($this->account->CheckForClosing()) {
+                Database::GetEntityManager()->remove($this->account);
+                Database::GetEntityManager()->flush();
+                $answer = "Account closed!";
+            } else {
+                $answer = "You cannot close account with negative balance";
+            }
+
+            $html = <<<HTML
+<form>
+    <label>{$answer}</label>
+	<button type="submit" formaction="/">Home</button>
+</form>
+
+HTML;
+
+            return $html;
         } catch (CantSaveException $e) {
 
             $this->logger->debug(

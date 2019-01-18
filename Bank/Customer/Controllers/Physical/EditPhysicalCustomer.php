@@ -48,31 +48,35 @@ class EditPhysicalCustomer implements ControllerInterface
 
         try {
 
-            $customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
                 ->find($request->id);
 
-            if(!$customer)
+            if(!$this->customer)
             {
-                throw new NotFoundException();
+
+                    throw new NotFoundException();
+
             }
 
 
 
 
             $html = <<<HTML
-<form method="post" action="/customer/save">
-    <input type="hidden" name="id" value="{$customer->getId()}">
-    <label for="name">Name</label>
-    <input name="name" value="{$customer->getName()}">
+<form method="post" action="/customer/physical/save">
+    <input type="hidden" name="id" value="{$this->customer->getId()}">
+    <input type="hidden" name="IPN" value="{$this->customer->getIPN()}">
+    <input type="hidden" name="passportCode" value="{$this->customer->getPassportCode()}">
+    <label for="firstName">First Name</label>
+    <input name="firstName" value="{$this->customer->getFirstName()}">
     <br>
-    <label for="taxCode">Tax Code</label>
-    <input name="taxCode" value="{$customer->getTaxCode()}">
+    <label for="lastName">Last Name</label>
+    <input name="lastName" value="{$this->customer->getLastName()}">
     <br>
-    <label for="pdvCode">PDV Code</label>
-    <input name="pdvCode" value="{$customer->getPdvCode()}">
+    <label for="age">Age</label>
+    <input name="age" value="{$this->customer->getAge()}">
     <br>
 	<button type="submit" >Save</button>
-	<button type="submit" formaction="/customer/delete">Delete</button>
+	<button type="submit" formaction="/customer/physical/delete">Delete</button>
 
 </form>
 
@@ -81,7 +85,7 @@ HTML;
 
         }
         catch (NotFoundException $e) {
-            return "Sorry, the account not found";
+            return $response->redirect("/notfound");
         }
         catch (\Bank\Services\SystemException $e) {
 
