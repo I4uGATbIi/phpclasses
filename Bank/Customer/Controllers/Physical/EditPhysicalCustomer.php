@@ -79,6 +79,14 @@ class EditPhysicalCustomer implements ControllerInterface
 	<button type="submit" formaction="/customer/physical/delete">Delete</button>
 
 </form>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 
 HTML;
             return $html;

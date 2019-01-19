@@ -19,17 +19,25 @@ class NewCreditAccount implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
      * @param CreditAccount $account
      * @param \Katzgrau\KLogger\Logger $logger
+     * @param \Twig\Environment $twig
      */
     public function __construct(
         CreditAccount $account,
-        \Katzgrau\KLogger\Logger $logger
+        \Katzgrau\KLogger\Logger $logger,
+        \Twig\Environment $twig
     )
     {
         $this->account = $account;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -42,29 +50,10 @@ class NewCreditAccount implements ControllerInterface
     {
         try {
             $customerId = $request->paramsGet()->customerId;
-            $html = <<<HTML
-<form method="post" action="/account/deposit/save">
-    <input type="hidden" name="customerId" value="{$customerId}">
-    <label for="accID">AccID</label>
-    <input name="accID">
-    <label for="price">Start Deposit</label>
-    <input name="price">
-    <br>
-    <label for="creditLimit">Credit Limit</label>
-    <input name="creditLimit" value="{$this->account->getCreditLimit()}">
-    <br>
-	<label for="percent">Choose Percent</label>
-    <select name="percent">
-	<option>15</option>
-	<option>20</option>
-	</select>
-	<br>
-	<button type="submit" formaction="/account/credit/save">Open</button>
+            $renderParams = array($customerId);
 
-</form>
-
-HTML;
-            return $html;
+            $template = $this->twig->load('NewCredit.html');
+            return $template->render($renderParams);
 
         } catch (\Bank\Services\SystemException $e) {
 

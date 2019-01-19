@@ -73,6 +73,14 @@ class EditCreditAccount implements ControllerInterface
 	<button type="submit" formaction="/account/credit/delete">Close Account</button>
 
 </form>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 
 HTML;
             return $html;

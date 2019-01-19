@@ -2,8 +2,7 @@
 
 namespace Bank\Customer\Controllers\Business;
 
-use Bank\Customer\BussinessCustomer;
-use Bank\Customer\ICustomer;
+use Bank\Customer\BusinessCustomer;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
@@ -13,7 +12,7 @@ use Bank\Services\Database;
 class EditBusinessCustomer implements ControllerInterface
 {
     /**
-     * @var BussinessCustomer
+     * @var BusinessCustomer
      */
     private $customer;
 
@@ -24,11 +23,11 @@ class EditBusinessCustomer implements ControllerInterface
 
     /**
      * View constructor.
-     * @param BussinessCustomer $product
+     * @param BusinessCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        BussinessCustomer $customer,
+        BusinessCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
     )
     {
@@ -48,7 +47,7 @@ class EditBusinessCustomer implements ControllerInterface
 
         try {
 
-            $this->customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(BusinessCustomer::class)
                 ->find($request->id);
 
             if(!$this->customer)
@@ -75,6 +74,14 @@ class EditBusinessCustomer implements ControllerInterface
 	<button type="submit" formaction="/customer/business/delete">Delete</button>
 
 </form>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 
 HTML;
             return $html;

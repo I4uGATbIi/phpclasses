@@ -24,17 +24,25 @@ class GetPhysicalCustomers implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
      * @param PhysicalCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
+     * @param Environment $twig
      */
     public function __construct(
         PhysicalCustomer $customer,
-        \Katzgrau\KLogger\Logger $logger
+        \Katzgrau\KLogger\Logger $logger,
+        \Twig\Environment $twig
     )
     {
         $this->customer = $customer;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -45,9 +53,11 @@ class GetPhysicalCustomers implements ControllerInterface
      */
     public function execute($request, $response)
     {
+
         try {
             $this->customer = Database::GetEntityManager()->getRepository(PhysicalCustomer::class)
                 ->findAll();
+            $renderParams = array( 'data'=>$this->customer, 'dataType'=>'Physical Customers' , 'link'=>'customer/physical/');
             if(!$this->customer)
             {
                 throw new NotFoundException();
@@ -56,12 +66,13 @@ class GetPhysicalCustomers implements ControllerInterface
 
 
 
-            $twig = DiContainer::getInstance()->get(Environment::class);
-            $template = $twig->load('CustomersAndAccounts.html');
-            return $template->render([ 'data'=>$this->customer, 'dataType'=>'Physical Customers' , 'link'=>'customer/physical/']);
+
+            $template = $this->twig->load('CustomersAndAccounts.html');
+            return $template->render($renderParams);
 
         } catch (NotFoundException $e) {
-            return $response->redirect("/notfound");
+            $template=$this->twig->load('noresults.html');
+            return  $template->render($renderParams);
         }
     }
 }

@@ -15,7 +15,7 @@ class MigrateController implements ControllerInterface
             $em = Database::GetEntityManager();
             $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
             $classes = array(
-                $em->getClassMetadata('\Bank\Customer\BussinessCustomer'),
+                $em->getClassMetadata('\Bank\Customer\BusinessCustomer'),
                 $em->getClassMetadata('\Bank\Customer\PhysicalCustomer'),
                 $em->getClassMetadata('\Bank\Account\DepositAccount'),
                 $em->getClassMetadata('\Bank\Account\CreditAccount'),

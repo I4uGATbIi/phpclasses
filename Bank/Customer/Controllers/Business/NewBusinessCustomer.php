@@ -2,7 +2,7 @@
 
 namespace Bank\Customer\Controllers\Business;
 
-use Bank\Customer\BussinessCustomer;
+use Bank\Customer\BusinessCustomer;
 use Bank\Services\ControllerInterface;
 
 class NewBusinessCustomer implements ControllerInterface
@@ -32,6 +32,14 @@ class NewBusinessCustomer implements ControllerInterface
 	<button type="submit">Save</button>
 
 </form>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 
 HTML;
             return $html;

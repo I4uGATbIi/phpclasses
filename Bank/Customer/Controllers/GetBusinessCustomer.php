@@ -2,8 +2,7 @@
 
 namespace Bank\Customer\Controllers;
 
-use Bank\Customer\BussinessCustomer;
-use Bank\Customer\ICustomer;
+use Bank\Customer\BusinessCustomer;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
@@ -15,7 +14,7 @@ use Twig\Environment;
 class GetBusinessCustomer implements ControllerInterface
 {
     /**
-     * @var BussinessCustomer
+     * @var BusinessCustomer
      */
     private $customer;
 
@@ -25,17 +24,24 @@ class GetBusinessCustomer implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
-     * @param BussinessCustomer $customer
+     * @param BusinessCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        BussinessCustomer $customer,
-        \Katzgrau\KLogger\Logger $logger
+        BusinessCustomer $customer,
+        \Katzgrau\KLogger\Logger $logger,
+        \Twig\Environment $twig
     )
     {
         $this->customer = $customer;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -47,21 +53,22 @@ class GetBusinessCustomer implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $this->customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(BusinessCustomer::class)
                 ->findAll();
+            $renderParams = array('data'=>$this->customer, 'dataType'=>'Business Customers' , 'link'=>'customer/business/');
 
             if(!$this->customer)
             {
                 throw new NotFoundException();
             }
 
-            $twig = DiContainer::getInstance()->get(Environment::class);
-            $template = $twig->load('CustomersAndAccounts.html');
-            return $template->render([ 'data'=>$this->customer, 'dataType'=>'Business Customers' , 'link'=>'customer/business/']);
+
+            $template = $this->twig->load('CustomersAndAccounts.html');
+            return $template->render($renderParams);
 
         } catch (NotFoundException $e) {
-            return $response->redirect("/notfound");
-
+            $template=$this->twig->load('noresults.html');
+            return  $template->render($renderParams);
 
         }
     }

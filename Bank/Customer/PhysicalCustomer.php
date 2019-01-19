@@ -2,8 +2,10 @@
 
 namespace Bank\Customer;
 
+use Bank\Account\AccountInterface;
+
 /**
- * Class BussinessCustomer
+ * Class BusinessCustomer
  * @package Bank\Customer
  * @Entity @Table(name="physicalCustomers")
  */
@@ -41,7 +43,7 @@ class PhysicalCustomer implements CustomerInterface
     private $passportCode;
 
     /**
-     * @var array
+     * @var AccountInterface[]
      */
     private $accounts;
 

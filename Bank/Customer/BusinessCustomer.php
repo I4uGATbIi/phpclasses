@@ -2,12 +2,14 @@
 
 namespace Bank\Customer;
 
+use Bank\Account\AccountInterface;
+
 /**
- * Class BussinessCustomer
+ * Class BusinessCustomer
  * @package Bank\Customer
  * @Entity @Table(name="businessCustomers")
  */
-class BussinessCustomer implements CustomerInterface
+class BusinessCustomer implements CustomerInterface
 {
     /**
      * @var string
@@ -35,7 +37,7 @@ class BussinessCustomer implements CustomerInterface
     private $pdvCode;
 
     /**
-     * @var array
+     * @var AccountInterface[]
      */
     private $accounts;
 

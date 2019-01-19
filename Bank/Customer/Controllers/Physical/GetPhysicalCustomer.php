@@ -11,8 +11,7 @@ use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 use Bank\Services\DiContainer;
-use Twig\Environment;
-
+use Bank\Services\Persistence\ParseMethods;
 
 class GetPhysicalCustomer implements ControllerInterface
 {
@@ -27,17 +26,27 @@ class GetPhysicalCustomer implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
      * @param PhysicalCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
+     * @param \Twig\Environment $twig
+     *
      */
     public function __construct(
         PhysicalCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
+        ,\Twig\Environment $twig
+
     )
     {
         $this->customer = $customer;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -55,34 +64,25 @@ class GetPhysicalCustomer implements ControllerInterface
                 ->findBy(array('customerId' => $this->customer->getId())));
             $this->customer->setAccounts(Database::GetEntityManager()->getRepository(DepositAccount::class)
                 ->findBy(array('customerId' => $this->customer->getId())));
+            $methods = ParseMethods::getMethods(PhysicalCustomer::class);
+            $renderParams = array('object' => $this->customer, 'methods' => $methods, 'dataType' => 'Physical Customers',
+                'link' => 'customer/physical/', 'mainData' => $this->customer->getData(),
+                'accounts' => $this->customer->getAccounts());
             if (!$this->customer) {
                 throw new NotFoundException();
 
             }
-            $arr = get_class_methods(PhysicalCustomer::class);
-            foreach ($arr as $method_name) {
-                if (strpos($method_name, 'get') === 0) {
-                    if (!strpos($method_name, 'Acc')) {
-                        if (!strpos($method_name, 'Id')) {
-                            if (!strpos($method_name, 'Name')) {
-                                $methods[] = $method_name;
-                            }
-                        }
-                    }
-                }
-            }
 
-            $twig = DiContainer::getInstance()->get(Environment::class);
-            $template = $twig->load('CustomerOrAccount.html');
 
-            //return print_r($this->customer->getAccounts());
 
-            return $template->render(['object' => $this->customer, 'methods' => $methods, 'dataType' => 'Physical Customers',
-                'link' => 'customer/physical/', 'mainData' => $this->customer->getData(),
-                'accounts' => $this->customer->getAccounts()]);
+            $template = $this->twig->load('CustomerOrAccount.html');
+
+
+            return $template->render($renderParams);
 
         } catch (NotFoundException $e) {
-            return $response->redirect("/notfound");
+            $template=$this->twig->load('noresults.html');
+            return  $template->render($renderParams);
         }
     }
 }

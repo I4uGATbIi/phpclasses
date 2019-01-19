@@ -61,6 +61,14 @@ class NewPhysicalCustomer implements ControllerInterface
 	<button type="submit">Save</button>
 
 </form>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 
 HTML;
             return $html;

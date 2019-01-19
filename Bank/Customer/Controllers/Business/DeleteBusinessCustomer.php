@@ -4,8 +4,7 @@ namespace Bank\Customer\Controllers\Business;
 
 use Bank\Account\CreditAccount;
 use Bank\Account\DepositAccount;
-use Bank\Customer\BussinessCustomer;
-use Bank\Customer\ICustomer;
+use Bank\Customer\BusinessCustomer;
 use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
@@ -15,7 +14,7 @@ use Bank\Services\Database;
 class DeleteBusinessCustomer implements ControllerInterface
 {
     /**
-     * @var BussinessCustomer
+     * @var BusinessCustomer
      */
     private $customer;
 
@@ -26,11 +25,11 @@ class DeleteBusinessCustomer implements ControllerInterface
 
     /**
      * View constructor.
-     * @param BussinessCustomer $product
+     * @param BusinessCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        BussinessCustomer $customer,
+        BusinessCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
     )
     {
@@ -47,7 +46,7 @@ class DeleteBusinessCustomer implements ControllerInterface
     public function execute($request, $response)
     {
         try {
-            $this->customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
+            $this->customer = Database::GetEntityManager()->getRepository(BusinessCustomer::class)
                 ->find($request->id);
             $this->customer->setAccounts(Database::GetEntityManager()->getRepository(CreditAccount::class)
                 ->findBy(array('customerId' => $this->customer->getId())));

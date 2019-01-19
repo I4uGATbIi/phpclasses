@@ -72,6 +72,15 @@ class EditDepositAccount implements ControllerInterface
 
 </form>
 
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
 HTML;
             return $html;
 

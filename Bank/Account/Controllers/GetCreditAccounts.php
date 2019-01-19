@@ -23,17 +23,24 @@ class GetCreditAccounts implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
      * @param CreditAccount $account
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
         CreditAccount $account,
-        \Katzgrau\KLogger\Logger $logger
+        \Katzgrau\KLogger\Logger $logger,
+        \Twig\Environment $twig
     )
     {
         $this->account = $account;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -47,19 +54,19 @@ class GetCreditAccounts implements ControllerInterface
         try {
             $this->account = Database::GetEntityManager()->getRepository(CreditAccount::class)
                 ->findAll();
-            if(!$this->account)
-            {
+            $renderParams = array('data' => $this->account, 'dataType' => 'Credit Accounts', 'link' => 'account/credit/');
+            if (!$this->account) {
                 throw new NotFoundException();
             }
 
-            $twig = DiContainer::getInstance()->get(Environment::class);
-            $template = $twig->load('CustomersAndAccounts.html');
-            return $template->render([ 'data'=>$this->account, 'dataType'=>'Credit Accounts' , 'link'=>'account/credit/']);
 
+            $template = $this->twig->load('CustomersAndAccounts.html');
+            return $template->render($renderParams);
 
 
         } catch (NotFoundException $e) {
-            return $response->redirect("/notfound");
+            $template=$this->twig->load('noresults.html');
+            return  $template->render($renderParams);
         }
     }
 }

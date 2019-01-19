@@ -41,6 +41,13 @@ class __TwigTemplate_5b83009728cced44012a4083392dcd604ce37d3c8d490e5226088855121
     <button type=\"submit\" formaction=\"/account/deposit/save\">Open</button>
 
 </form>
+<button onclick=\"goBack()\">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </html>";
     }
@@ -80,6 +87,13 @@ class __TwigTemplate_5b83009728cced44012a4083392dcd604ce37d3c8d490e5226088855121
     <button type=\"submit\" formaction=\"/account/deposit/save\">Open</button>
 
 </form>
+<button onclick=\"goBack()\">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </html>", "NewDeposit.html", "/home/keyblader/courses/phpclasses/templates/NewDeposit.html");
     }

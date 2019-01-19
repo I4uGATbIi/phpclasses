@@ -8,6 +8,7 @@ use Bank\Services\Persistence\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 use Bank\Services\DiContainer;
+use Bank\Services\Persistence\ParseMethods;
 use Twig\Environment;
 
 class GetDepositAccount implements ControllerInterface
@@ -23,17 +24,24 @@ class GetDepositAccount implements ControllerInterface
     private $logger;
 
     /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    /**
      * View constructor.
      * @param DepositAccount $account
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
         DepositAccount $account,
-        \Katzgrau\KLogger\Logger $logger
+        \Katzgrau\KLogger\Logger $logger,
+        \Twig\Environment $twig
     )
     {
         $this->account = $account;
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -47,23 +55,22 @@ class GetDepositAccount implements ControllerInterface
         try {
             $this->account = Database::GetEntityManager()->getRepository(DepositAccount::class)
                 ->find($request->id);
-            if(!$this->account)
-            {
+            $methods = ParseMethods::getMethods(DepositAccount::class);
+            $renderParams = array('object' => $this->account, 'methods' => $methods, 'dataType' => 'Deposit Account',
+                'link' => 'account/deposit/', 'mainData' => $this->account->getData());
+
+
+            if (!$this->account) {
                 throw new NotFoundException();
             }
-            $arr=get_class_methods(DepositAccount::class);
-            foreach ($arr as $method_name) {
-                if(strpos($method_name,'get')===0) {
-                    $methods[] = $method_name;
-                }
-            }
 
-            $twig = DiContainer::getInstance()->get(Environment::class);
-            $template = $twig->load('CustomerOrAccount.html');
-            return $template->render([ 'object'=>$this->account , 'methods'=>$methods,'dataType'=>'Deposit Account' , 'link'=>'account/deposit/','mainData'=>$this->account->getData()]);
+
+            $template = $this->twig->load('CustomerOrAccount.html');
+            return $template->render($renderParams);
 
         } catch (NotFoundException $e) {
-            return $response->redirect("/notfound");
+            $template = $this->twig->load('noresults.html');
+            return $template->render($renderParams);
         }
     }
 }

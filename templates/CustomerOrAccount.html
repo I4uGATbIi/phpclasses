@@ -14,7 +14,7 @@
 
 </ul>
 <br>
-<a href="http://bank-project.loc/">Home</a>
+
 {% if 'Customers' in dataType %}
     <ul>
     {% for account in accounts %}
@@ -27,5 +27,22 @@
 {% endif %}
 
     </form>
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+    function goBack() {
+        if (document.referrer.includes('new'))
+        {
+            alert('No-no-no-no-no-no!');
+        }
+        else
+        {
+            window.history.back();
+        }
+    }
+</script>
+
+<a href="http://bank-project.loc/">Home</a>
 </body>
 </html>

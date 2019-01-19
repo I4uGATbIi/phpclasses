@@ -2,8 +2,7 @@
 
 namespace Bank\Customer\Controllers\Business;
 
-use Bank\Customer\BussinessCustomer;
-use Bank\Customer\ICustomer;
+use Bank\Customer\BusinessCustomer;
 use Bank\Services\Database;
 use Bank\Services\Persistence\CantSaveException;
 use Bank\Services\ControllerInterface;
@@ -12,7 +11,7 @@ class SaveBusinessCustomer implements ControllerInterface
 {
 
     /**
-     * @var BussinessCustomer
+     * @var BusinessCustomer
      */
     private $customer;
 
@@ -23,11 +22,11 @@ class SaveBusinessCustomer implements ControllerInterface
 
     /**
      * View constructor.
-     * @param BussinessCustomer $product
+     * @param BusinessCustomer $customer
      * @param \Katzgrau\KLogger\Logger $logger
      */
     public function __construct(
-        BussinessCustomer $customer,
+        BusinessCustomer $customer,
         \Katzgrau\KLogger\Logger $logger
     )
     {
@@ -46,7 +45,7 @@ class SaveBusinessCustomer implements ControllerInterface
         try {
             if($request->paramsPost()->id != null)
             {
-                $this->customer = Database::GetEntityManager()->getRepository(BussinessCustomer::class)
+                $this->customer = Database::GetEntityManager()->getRepository(BusinessCustomer::class)
                     ->find($request->id);
             }
             $this->customer->setName($request->paramsPost()->name);
