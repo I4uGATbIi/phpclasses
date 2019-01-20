@@ -4,7 +4,7 @@ namespace Bank\Account\Controllers\Deposit;
 
 use Bank\Account\DepositAccount;
 use Bank\Services\Database;
-use Bank\Services\Persistence\CantSaveException;
+use Bank\Services\Persistance\CantSaveException;
 use Bank\Services\ControllerInterface;
 
 class SaveDepositAccount implements ControllerInterface

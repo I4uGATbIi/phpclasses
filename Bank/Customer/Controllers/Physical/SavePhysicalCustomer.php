@@ -4,7 +4,7 @@ namespace Bank\Customer\Controllers\Physical;
 
 use Bank\Customer\PhysicalCustomer;
 use Bank\Services\Database;
-use Bank\Services\Persistence\CantSaveException;
+use Bank\Services\Persistance\CantSaveException;
 use Bank\Services\ControllerInterface;
 
 class SavePhysicalCustomer implements ControllerInterface

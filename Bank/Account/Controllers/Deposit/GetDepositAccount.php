@@ -3,13 +3,10 @@
 namespace Bank\Account\Controllers\Deposit;
 
 use Bank\Account\DepositAccount;
-use Bank\Account\AccountInterface;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
-use Bank\Services\DiContainer;
-use Bank\Services\Persistence\ParseMethods;
-use Twig\Environment;
+use Bank\Services\Persistance\ParseMethods;
 
 class GetDepositAccount implements ControllerInterface
 {
@@ -32,6 +29,7 @@ class GetDepositAccount implements ControllerInterface
      * View constructor.
      * @param DepositAccount $account
      * @param \Katzgrau\KLogger\Logger $logger
+     * @param \Twig\Environment $twig
      */
     public function __construct(
         DepositAccount $account,

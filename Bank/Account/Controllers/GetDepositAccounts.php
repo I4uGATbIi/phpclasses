@@ -3,12 +3,9 @@
 namespace Bank\Account\Controllers;
 
 use Bank\Account\DepositAccount;
-use Bank\Account\AccountInterface;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
-use Bank\Services\DiContainer;
-use Twig\Environment;
 
 
 class GetDepositAccounts implements ControllerInterface

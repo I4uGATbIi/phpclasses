@@ -5,7 +5,7 @@ namespace Bank\Account\Controllers\Credit;
 use Bank\Account\CreditAccount;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 
 class EditCreditAccount implements ControllerInterface
 {

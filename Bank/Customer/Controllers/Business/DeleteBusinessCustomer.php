@@ -5,7 +5,7 @@ namespace Bank\Customer\Controllers\Business;
 use Bank\Account\CreditAccount;
 use Bank\Account\DepositAccount;
 use Bank\Customer\BusinessCustomer;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 

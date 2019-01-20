@@ -7,7 +7,7 @@ namespace Bank\Customer\Controllers\Physical;
 use Bank\Account\CreditAccount;
 use Bank\Account\DepositAccount;
 use Bank\Customer\PhysicalCustomer;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 

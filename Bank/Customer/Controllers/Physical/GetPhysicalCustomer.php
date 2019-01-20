@@ -7,11 +7,11 @@ use Bank\Account\AccountInterface;
 use Bank\Account\CreditAccount;
 use Bank\Account\DepositAccount;
 use Bank\Customer\PhysicalCustomer;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 use Bank\Services\DiContainer;
-use Bank\Services\Persistence\ParseMethods;
+use Bank\Services\Persistance\ParseMethods;
 
 class GetPhysicalCustomer implements ControllerInterface
 {

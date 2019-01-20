@@ -4,7 +4,7 @@ namespace Bank\Account\Controllers\Credit;
 
 use Bank\Account\CreditAccount;
 use Bank\Services\Database;
-use Bank\Services\Persistence\CantSaveException;
+use Bank\Services\Persistance\CantSaveException;
 use Bank\Services\ControllerInterface;
 
 class SaveCreditAccount implements ControllerInterface

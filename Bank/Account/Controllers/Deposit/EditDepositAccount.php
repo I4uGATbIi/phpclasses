@@ -5,7 +5,7 @@ namespace Bank\Account\Controllers\Deposit;
 use Bank\Account\DepositAccount;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 
 class EditDepositAccount implements ControllerInterface
 {

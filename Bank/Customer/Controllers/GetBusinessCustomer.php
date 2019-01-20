@@ -3,7 +3,7 @@
 namespace Bank\Customer\Controllers;
 
 use Bank\Customer\BusinessCustomer;
-use Bank\Services\Persistence\NotFoundException;
+use Bank\Services\Persistance\NotFoundException;
 use Bank\Services\ControllerInterface;
 use Bank\Services\Database;
 use Bank\Services\DiContainer;

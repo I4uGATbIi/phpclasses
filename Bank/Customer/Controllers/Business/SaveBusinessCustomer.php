@@ -4,7 +4,7 @@ namespace Bank\Customer\Controllers\Business;
 
 use Bank\Customer\BusinessCustomer;
 use Bank\Services\Database;
-use Bank\Services\Persistence\CantSaveException;
+use Bank\Services\Persistance\CantSaveException;
 use Bank\Services\ControllerInterface;
 
 class SaveBusinessCustomer implements ControllerInterface

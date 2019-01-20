@@ -1,6 +1,6 @@
 <?php
 
-namespace Bank\Services\Persistence;
+namespace Bank\Services\Persistance;
 
 class ParseMethods
 {
